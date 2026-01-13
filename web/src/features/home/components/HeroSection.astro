@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import dialcadevLogo from "@/assets/images/dialcadev-logo-dark.webp";
+import myPhoto from "@/assets/images/diego-castro-pic.webp";
 import pdfPath from "@/assets/documents/diego-castro-cv.pdf";
 
 import { SOCIAL_LINKS } from "@/constants";
@@ -25,9 +26,9 @@ import { SOCIAL_LINKS } from "@/constants";
         </div>
         <div class="relative w-48 h-48 md:w-56 md:h-56 shrink-0">
             <div class="absolute inset-0 bg-linear-to-br from-blue-500 to-cyan-400 rounded-3xl rotate-6 blur-2xl opacity-20"></div>
-            <div class="relative w-full h-full rounded-3xl overflow-hidden border-2 border-white/20 shadow-xl">
+            <div class="relative w-full h-full rounded-full overflow-hidden border-2 border-white/20 shadow-xl">
                 <Image 
-                    src={dialcadevLogo} 
+                    src={myPhoto} 
                     alt="Diego Castro - Dialcadev" 
                     class="w-full h-full object-cover"
                     loading="eager"
