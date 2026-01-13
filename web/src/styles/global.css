@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+.tooltip {
+    @apply absolute -bottom-10 left-1/2 -translate-x-1/2 bg-gray-700 text-gray-100 text-sm font-medium px-3 py-1.5 rounded-lg opacity-0 pointer-events-none transition-opacity duration-200 whitespace-nowrap shadow-lg;
+}
+.dock-item:hover .tooltip {
+    @apply opacity-100;
+}
+@media (max-width: 768px) {
+    .tooltip {
+        @apply hidden;
+    }
+}
