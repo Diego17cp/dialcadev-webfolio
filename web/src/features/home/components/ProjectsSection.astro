@@ -3,24 +3,6 @@ import { Icon } from "astro-icon/components";
 import ProjectCard from "./ProjectCard.astro";
 import { getCollection } from "astro:content";
 
-export interface Project {
-    title: string;
-    description: string;
-    image: string;
-    technologies: {
-        name: string;
-        icon: string;
-        color: string;
-    }[];
-    github?: string;
-    demo?: string;
-    npm?: string;
-    download?: string;
-    featured?: boolean;
-    order?: number;
-    publishedAt: Date;
-}
-
 const projects = await getCollection("projects");
 
 const sortedProjects = projects.sort((a: any, b: any) => {
