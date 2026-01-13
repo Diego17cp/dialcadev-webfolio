@@ -2,6 +2,7 @@
 import { Icon } from "astro-icon/components";
 import ProjectCard from "./ProjectCard.astro";
 import { getCollection } from "astro:content";
+import HomeSection from "./HomeSection.astro";
 
 const projects = await getCollection("projects");
 
@@ -11,13 +12,7 @@ const sortedProjects = projects.sort((a: any, b: any) => {
 });
 ---
 
-<section id="projects" class="my-20 md:my-28 pt-5">
-    <div class="flex items-center gap-3 mb-12">
-        <Icon name="tabler:code" class="w-8 h-8 text-blue-400" />
-        <h2 class="text-3xl md:text-4xl font-bold text-white">
-            Projects
-        </h2>
-    </div>
+<HomeSection id="projects" icon="tabler:code" title="Projects">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {sortedProjects.map((project) => (
             <ProjectCard 
@@ -25,4 +20,4 @@ const sortedProjects = projects.sort((a: any, b: any) => {
             />
         ))}
     </div>
-</section>
+</HomeSection>
