@@ -25,7 +25,7 @@ const navItems = [
 	</main>
 	<nav
 		class="fixed top-6 left-1/2 -translate-x-1/2 z-50
-            bg-white/10 backdrop-blur-xl rounded-2xl
+            bg-white/10 backdrop-blur-xl rounded-4xl
             flex items-center gap-4 shadow-2xl border border-white/20
             px-4 py-1 md:top-8
             transition-all duration-300"
@@ -35,8 +35,8 @@ const navItems = [
 			navItems.map(({ href, label, icon }) => (
 				<a
 					href={href}
-					class="dock-item group relative flex items-center justify-center w-12 h-12 md:w-14 md:h-14 
-                    rounded-xl hover:scale-110 transition-transform duration-200 
+					class="dock-item group relative flex items-center justify-center w-10 h-10 md:w-12 md:h-12
+                    rounded-2xl hover:scale-110 transition-transform duration-200 
                     text-white/70 hover:text-white hover:bg-white/10"
 					aria-label={label}
 				>
