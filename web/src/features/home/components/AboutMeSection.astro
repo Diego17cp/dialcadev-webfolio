@@ -1,0 +1,60 @@
+---
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import dialcadevLogo from "@/assets/images/dialcadev-logo-dark.webp";
+import HomeSection from "./HomeSection.astro";
+---
+
+<HomeSection id="about" icon="tabler:user" title="About Me">
+    <div class="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+        <div class="flex-1 space-y-4">
+            <p class="text-lg text-white/80 leading-relaxed">
+                Hi! I'm <span class="text-blue-400 font-semibold">Diego Castro</span>, 
+                a passionate Full Stack Developer with a focus on creating 
+                <span class="text-blue-400 font-semibold">scalable and efficient web applications</span>.
+            </p>
+
+            <p class="text-lg text-white/80 leading-relaxed">
+                I specialize in modern web technologies like 
+                <span class="text-blue-400 font-semibold">React</span>, 
+                <span class="text-blue-400 font-semibold">TypeScript</span>, and 
+                <span class="text-blue-400 font-semibold">Node.js</span>, 
+                and I'm always exploring new tools and frameworks to improve my craft.
+            </p>
+
+            <p class="text-lg text-white/80 leading-relaxed">
+                When I'm not coding, you'll find me contributing to open-source projects, 
+                learning about system design, or building tools that make developers' lives easier.
+            </p>
+
+            <div class="pt-4">
+                <h3 class="text-xl font-bold text-white mb-4">What I Do</h3>
+                <ul class="space-y-3">
+                    <li class="flex items-start gap-3">
+                        <Icon name="tabler:check" class="w-6 h-6 text-blue-400 shrink-0 mt-0.5" />
+                        <span class="text-white/80">Build responsive and performant web applications</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <Icon name="tabler:check" class="w-6 h-6 text-blue-400 shrink-0 mt-0.5" />
+                        <span class="text-white/80">Design and implement RESTful APIs and databases</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <Icon name="tabler:check" class="w-6 h-6 text-blue-400 shrink-0 mt-0.5" />
+                        <span class="text-white/80">Collaborate with teams using modern workflows</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="relative w-64 h-64 md:w-80 md:h-80 shrink-0">
+            <div class="absolute inset-0 bg-linear-to-br from-blue-500 to-cyan-400 rounded-3xl rotate-6 blur-2xl opacity-20"></div>            
+            <div class="relative w-full h-full rounded-3xl overflow-hidden border-2 border-white/20 shadow-2xl rotate-3 hover:rotate-6 transition-transform duration-500">
+                <Image 
+                    src={dialcadevLogo} 
+                    alt="Dialcadev Logo" 
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                />
+            </div>
+        </div>
+    </div>
+</HomeSection>
