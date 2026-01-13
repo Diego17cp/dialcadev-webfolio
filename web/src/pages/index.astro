@@ -1,7 +1,16 @@
 ---
-import Layout from '../layouts/BaseLayout.astro';
+import {
+	AboutMeSection,
+	ExperienceSection,
+	HeroSection,
+	ProjectsSection,
+} from "@/features/home";
+import HomeLayout from "@/layouts/HomeLayout.astro";
 ---
 
-<Layout>
-	<h1>Hola mundo</h1>
-</Layout>
+<HomeLayout>
+	<HeroSection />
+	<ExperienceSection />
+	<ProjectsSection />
+	<AboutMeSection />
+</HomeLayout>
