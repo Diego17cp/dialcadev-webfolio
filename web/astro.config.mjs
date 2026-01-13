@@ -15,7 +15,8 @@ export default defineConfig({
     include: {
       tabler: ["*"],
       lucide: ["*"],
-      "devicon-plain": ["*"]
+      "devicon-plain": ["*"],
+      "simple-icons": ["*"]
     }
   })]
 });
