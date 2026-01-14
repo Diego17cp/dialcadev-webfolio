@@ -131,8 +131,3 @@ This project demonstrates my ability to:
 
 DialcaPharma represents a production-minded approach to full-stack development.
 
----
-
-## 💻 Source Code
-
-- GitHub Repository: https://github.com/dialcadev/dialcapharma

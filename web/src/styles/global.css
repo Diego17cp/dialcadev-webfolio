@@ -25,6 +25,12 @@
     @apply scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent
 }
 
+.content-renderer {
+    @apply overflow-hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
 .content-renderer :global(h1) {
     @apply text-4xl font-bold text-white mt-12 mb-6;
 }
@@ -39,6 +45,8 @@
 
 .content-renderer :global(p) {
     @apply text-white/80 leading-relaxed mb-4;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .content-renderer :global(ul),
@@ -48,10 +56,14 @@
 
 .content-renderer :global(li) {
     @apply leading-relaxed;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .content-renderer :global(code) {
     @apply bg-white/10 px-2 py-1 rounded text-blue-300 text-sm;
+    word-break: break-all;
+    white-space: pre-wrap;
 }
 
 .content-renderer :global(pre) {
@@ -60,10 +72,14 @@
 
 .content-renderer :global(pre code) {
     @apply bg-transparent p-0;
+    white-space: pre;
+    word-break: normal;
 }
 
 .content-renderer :global(a) {
     @apply text-blue-400 hover:text-blue-300 underline transition-colors;
+    word-break: break-all;
+    overflow-wrap: break-word;
 }
 
 .content-renderer :global(blockquote) {
