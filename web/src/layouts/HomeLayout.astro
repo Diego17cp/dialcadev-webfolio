@@ -13,21 +13,23 @@ const navItems = [
 	{ href: "/#experience", label: "Experience", icon: "tabler:briefcase" },
 	{ href: "/#projects", label: "Projects", icon: "tabler:code" },
 	{ href: "/#about", label: "About Me", icon: "tabler:user" },
-	{ href: "mailto:dialcadev@gmail.com", label: "Contact", icon: "tabler:mail" },
+	{
+		href: "mailto:dialcadev@gmail.com",
+		label: "Contact",
+		icon: "tabler:mail",
+	},
 ];
 ---
 
 <BaseLayout title={title} description={description}>
-	<main
-		class="min-h-screen w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-32"
-	>
+	<main class="min-h-screen w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-32 pt-24">
 		<slot />
 	</main>
 	<nav
 		class="fixed top-6 left-1/2 -translate-x-1/2 z-50
-            bg-white/10 backdrop-blur-xl rounded-4xl
+            bg-white/10 backdrop-blur-xl rounded-2xl
             flex items-center gap-4 shadow-2xl border border-white/20
-            px-4 py-1 md:top-8
+            px-4 py-2 md:top-8
             transition-all duration-300"
 		aria-label="Main navigation"
 	>
@@ -35,8 +37,9 @@ const navItems = [
 			navItems.map(({ href, label, icon }) => (
 				<a
 					href={href}
+					data-section={href.replace("/#", "")}
 					class="dock-item group relative flex items-center justify-center w-10 h-10 md:w-12 md:h-12
-                    rounded-2xl hover:scale-110 transition-transform duration-200 
+                    rounded-2xl hover:scale-110 transition-all duration-200 ease-in-out
                     text-white/70 hover:text-white hover:bg-white/10"
 					aria-label={label}
 				>
@@ -47,3 +50,43 @@ const navItems = [
 		}
 	</nav>
 </BaseLayout>
+<script>
+	document.addEventListener("astro:page-load", () => {
+		const sections = document.querySelectorAll("section[id]");
+		const navLinks = document.querySelectorAll("nav a[data-section]");
+
+		const onView = (entries: IntersectionObserverEntry[]) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					const sectionId = entry.target.id;
+					navLinks.forEach((link) => {
+						const linkSection = link.getAttribute("data-section");
+						if (linkSection === sectionId) {
+							link.classList.add("text-blue-400", "bg-white/10");
+							link.classList.remove("text-white/70");
+						} else {
+							link.classList.remove(
+								"text-blue-400",
+								"bg-white/10"
+							);
+							link.classList.add("text-white/70");
+						}
+					});
+				}
+			});
+		};
+
+		const observer = new IntersectionObserver(onView, {
+			root: null,
+			rootMargin: "0px",
+			threshold: 0.3,
+		});
+
+		sections.forEach((section) => observer.observe(section));
+
+		document.onvisibilitychange = () => {
+			if (document.visibilityState === "hidden") observer.disconnect();
+			else sections.forEach((section) => observer.observe(section));
+		};
+	});
+</script>
