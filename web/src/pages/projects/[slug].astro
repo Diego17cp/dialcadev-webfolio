@@ -1,0 +1,108 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { Icon } from "astro-icon/components";
+
+export const getStaticPaths = async () => {
+    const projects = await getCollection("projects");
+    return projects.map((project) => ({
+        params: { slug: project.slug },
+        props: { project },
+    }));
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+const { title, description, image, technologies, github, demo, npm, download } = project.data;
+---
+
+<BaseLayout title={`${title} | Dialcadev`} description={description}>
+    <main class="min-h-screen w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-32">
+        <a 
+            href="/#projects"
+            class="inline-flex items-center gap-2 mb-8 px-4 py-2 bg-white/10 backdrop-blur-sm text-white rounded-lg border border-white/20 hover:bg-white/20 transition-all duration-300"
+        >
+            <Icon name="tabler:arrow-left" class="w-5 h-5" />
+            Back to Portfolio
+        </a>
+        <header class="mb-12">
+            <div class="relative aspect-video w-full overflow-hidden rounded-2xl mb-8 border-2 border-white/20">
+                <img
+                    src={image}
+                    alt={title}
+                    transition:name={`project-${project.slug}`}
+                    class="w-full h-full object-cover"
+                />
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                {title}
+            </h1>
+            <p class="text-xl text-white/80 leading-relaxed mb-6">
+                {description}
+            </p>
+            <div class="flex flex-wrap gap-3 mb-8">
+                {github && (
+                    <a
+                        href={github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-sm text-white rounded-lg border border-white/20 hover:bg-white hover:text-black transition-all duration-300"
+                    >
+                        <Icon name="tabler:brand-github" class="w-5 h-5" />
+                        View on GitHub
+                    </a>
+                )}
+                {demo && (
+                    <a
+                        href={demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-300 shadow-lg hover:shadow-blue-500/50"
+                    >
+                        <Icon name="tabler:external-link" class="w-5 h-5" />
+                        Live Demo
+                    </a>
+                )}
+                {npm && (
+                    <a
+                        href={npm}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 px-5 py-2.5 bg-red-500/20 backdrop-blur-sm text-white rounded-lg border border-red-500/30 hover:bg-red-500 transition-all duration-300"
+                    >
+                        <Icon name="tabler:brand-npm" class="w-5 h-5" />
+                        View on NPM
+                    </a>
+                )}
+                {download && (
+                    <a
+                        href={download}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 px-5 py-2.5 bg-purple-500/20 backdrop-blur-sm text-white rounded-lg border border-purple-500/30 hover:bg-purple-500 transition-all duration-300"
+                    >
+                        <Icon name="tabler:download" class="w-5 h-5" />
+                        Download
+                    </a>
+                )}
+            </div>
+            <div class="mb-8">
+                <h2 class="text-xl font-bold text-white mb-4">Technologies Used</h2>
+                <div class="flex flex-wrap gap-3">
+                    {technologies.map((tech) => (
+                        <span
+                            class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white rounded-lg border border-white/10"
+                            style={`background-color: ${tech.color}50`}
+                        >
+                            <Icon name={tech.icon} class="w-5 h-5 text-white" />
+                            {tech.name}
+                        </span>
+                    ))}
+                </div>
+            </div>
+        </header>
+        <article class="prose prose-invert prose-lg max-w-none content-renderer">
+            <Content />
+        </article>
+    </main>
+</BaseLayout>
