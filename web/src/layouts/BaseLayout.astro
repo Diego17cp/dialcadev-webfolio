@@ -3,8 +3,10 @@ import "@/styles/global.css";
 import "@fontsource-variable/onest";
 
 const {
-	title = "Dialcadev - Software Engineer",
+	title = "Dialcadev - Full Stack Developer | Portfolio & Projects",
 	description = "Welcome to my portfolio website where I showcase my projects and skills as a software engineer.",
+	image="/dialcadev-logo-dark.webp",
+	url="https://dialcadev.vercel.app",
 } = Astro.props;
 
 import { ClientRouter } from "astro:transitions";
@@ -17,9 +19,49 @@ import { ClientRouter } from "astro:transitions";
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/ico" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content={description} />
-		<meta name="author" content="DialcaDev" />
 		<title>{title}</title>
+		<meta name="description" content={description} />
+        <meta name="keywords" content="dialcadev, dialca, dialca.dev, diego castro, full stack developer, software engineer, react, typescript, node.js, portfolio, web development, frontend, backend" />
+		<meta name="author" content="Diego Castro (Dialcadev)" />
+		<meta name="robots" content="index, follow" />
+		<link rel="canonical" href={url} />
+
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={`${url}${image}`} />
+		<meta property="og:url" content={url} />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Dialcadev Portfolio" />
+		<meta property="og:locale" content="en_US" />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={`${url}${image}`} />
+		<meta name="twitter:creator" content="@dialcadev" />
+
+		<script type="application/ld+json" set:html={
+            JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Person",
+                "name": "Diego Castro",
+                "alternateName": ["Dialcadev", "Dialca"],
+                "jobTitle": "Full Stack Developer",
+                "description": description,
+                "url": url,
+                "image": `${url}${image}`,
+                "sameAs": [
+                    "https://github.com/Diego17cp",
+                    "https://linkedin.com/in/diego-castro-pastor",
+                    "https://twitter.com/dialcadev"
+                ],
+                "knowsAbout": [
+                    "React", "TypeScript", "Node.js", "Full Stack Development",
+                    "Web Development", "Software Engineering"
+                ],
+                "email": "mailto:dialcadev@gmail.com"
+            })
+        } />
 		<ClientRouter />
 	</head>
 	<body>
