@@ -1,0 +1,51 @@
+---
+import { Icon } from "astro-icon/components";
+import HomeSection from "./HomeSection.astro";
+import { skillsCategories } from "@/constants";
+---
+
+<HomeSection id="skills" icon="tabler:brain" title="Skills">
+    <p class="text-lg text-white/80 leading-relaxed mb-12 max-w-3xl">
+        I'm passionate about staying up-to-date with 
+        <span class="bg-linear-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent font-semibold">
+            modern technologies
+        </span> and best practices. 
+        Here are the main technologies and tools I work with to build 
+        <span class="bg-linear-to-r from-[#d79b5f] to-[#e6a62c] bg-clip-text text-transparent font-semibold">
+            scalable, efficient, and user-friendly applications
+        </span>.
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {skillsCategories.map((category) => (
+            <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300">
+                <h3 class={`text-4xl font-bold text-center mb-3 bg-linear-to-r ${category.gradient} bg-clip-text text-transparent`}>
+                    {category.title}
+                </h3>                
+                <p class="text-white/70 text-sm mb-6 leading-relaxed">
+                    {category.description}
+                </p>
+                {category.technologies.length > 0 ? (
+                    <div class="flex flex-wrap gap-3">
+                        {category.technologies.map((tech) => (
+                            <span
+                                class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white rounded-lg border border-white/20 shadow-sm"
+                                style={`background-color: ${tech.color}90`}
+                            >
+                                {tech.name}
+                                <Icon 
+                                    name={tech.icon} 
+                                    class="w-5 h-5 text-white" 
+                                    style={tech.iconColor ? `color: ${tech.iconColor}` : undefined}
+                                />
+                            </span>
+                        ))}
+                    </div>
+                ) : (
+                    <p class="text-white/60 italic text-sm">
+                        Currently developing exciting projects...
+                    </p>
+                )}
+            </div>
+        ))}
+    </div>
+</HomeSection>
